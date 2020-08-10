@@ -25,15 +25,8 @@ pipeline {
 			}
 		steps{
 			withSonarQubeEnv('SonarQube') {
-				steps{
-					bat 'cd %scannerHome%'
-					}
-				steps{
-					bat 'D:'
-					}
-				steps{
-					bat 'sonar-scanner.bat'
-					}
+			bat 'cd %scannerHome% && call sonar-scanner.bat'
+			
 			//cmd_exec ('cd %scannerHome%')
 			//cmd_exec ('sonar-scanner.bat')
 			}
