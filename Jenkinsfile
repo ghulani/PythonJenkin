@@ -28,7 +28,7 @@ pipeline {
 		}
 		steps{
 			withSonarQubeEnv('SonarQube') {
-			cmd_exec ('echo %scannerHome%)	'
+			cmd_exec ('echo %scannerHome%')
 			}
 		}
 		
