@@ -25,7 +25,8 @@ pipeline {
 			}
 		steps{
 			withSonarQubeEnv('SonarQube') {
-			cmd_exec ('echo %scannerHome%')
+			cmd_exec ('cd %scannerHome%')
+			cmd_exec ('sonar-scanner.bat')
 			}
 		}
 		
@@ -40,5 +41,5 @@ pipeline {
 	}
 }
 def cmd_exec(command) {
-		return bat(returnStdout: true, script: '"${command}"sonar-scanner.bat').trim()
+		return bat(returnStdout: true, script: "${command}").trim()
 	}
