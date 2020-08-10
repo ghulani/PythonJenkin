@@ -8,10 +8,10 @@ pipeline {
 			url: 'https://github.com/ghulani/PythonJenkin'
 			}
 		}
-   //stage('build') {
-    //  steps {
-     //   sh 'pip install -r requirements.txt'
-     // }
-    //}
+   stage('build') {
+		steps {
+        cmd_exec('pip install -r requirements.txt')
+      }
+    }
   }
 }
