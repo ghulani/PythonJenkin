@@ -10,7 +10,7 @@ pipeline {
 		}
    stage('build') {
 		steps {
-        cmd_exec('pip install -r requirements.txt')
+        bat 'pip install -r requirements.txt'
       }
     }
   }
