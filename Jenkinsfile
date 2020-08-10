@@ -30,9 +30,7 @@ pipeline {
 		}
 		
 	}
-	def cmd_exec(command) {
-			return bat(returnStdout: true, script: "${command}sonar-scanner.bat").trim()
-		}
+
   
 	//post {
 	//      always {
@@ -41,3 +39,6 @@ pipeline {
 	// }
 	}
 }
+def cmd_exec(command) {
+			return bat(returnStdout: true, script: '${command}sonar-scanner.bat').trim()
+		}
