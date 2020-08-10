@@ -1,13 +1,13 @@
 pipeline {
   agent any
-  stage('SCM Checkout'){
+  stages {
+	stage('SCM Checkout'){
 	git branch: 'master', 
 	credentialsId: 'github', 
 	url: 'https://github.com/ghulani/PythonJenkin'
    
    }
-  stages {
-    stage('build') {
+   stage('build') {
       steps {
         sh 'pip install -r requirements.txt'
       }
