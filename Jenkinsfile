@@ -40,5 +40,5 @@ pipeline {
 	}
 }
 def cmd_exec(command) {
-			return bat(returnStdout: true, script: '${command}sonar-scanner.bat').trim()
-		}
+		return bat(returnStdout: true, script: "${command}"sonar-scanner.bat).trim()
+	}
