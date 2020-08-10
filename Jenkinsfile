@@ -13,5 +13,15 @@ pipeline {
         bat 'pip install -r requirements.txt'
       }
     }
+	stage('Unit tests'){
+		steps{
+			bat 'pytest --junitxml test-results.xml "src/tests/test1.py"'
+		}
+	}
   }
+  post {
+        always {
+            junit 'build/reports/**/*.xml'
+        }
+    }
 }
