@@ -20,12 +20,14 @@ pipeline {
 	}
 	
 	stage('SonarQube') {
-		environment {
-			scannerHome = tool 'SonarScanner'
+		steps{
+			environment {
+				scannerHome = tool 'SonarScanner'
+			}
+			withSonarQubeEnv('SonarQube') {
+			bat '${scannerHome}sonar-scanner.bat'
+			}
 		}
-		withSonarQubeEnv('SonarQube') {
-            bat '${scannerHome}sonar-scanner.bat'
-        }
 	}
   
 	//post {
