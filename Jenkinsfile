@@ -18,7 +18,16 @@ pipeline {
 			bat 'pytest --junitxml test-results.xml "src/tests/test1.py"'
 		}
 	}
-  }
+	
+	stage('SonarQube') {
+		environment {
+			scannerHome = tool 'SonarScanner'
+		}
+		withSonarQubeEnv('SonarQube') {
+            bat '${scannerHome}sonar-scanner.bat"
+        }
+	}
+  
   //post {
   //      always {
    //         junit 'build/reports/**/*.xml'
