@@ -13,7 +13,16 @@ pipeline {
 			url: 'https://github.com/ghulani/PythonJenkin'
 			}
 		}
-   stage('build') {
+
+	stage("Maven Build") {
+            steps {
+                script {
+                    bat "mvn package -DskipTests=true"
+                }
+            }
+    }
+	
+    stage('build') {
 		steps {
         bat 'pip install -r requirements.txt'
       }
