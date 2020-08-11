@@ -1,25 +1,36 @@
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>nexus@123</artifactId>
-            <version>1.6.0</version>
-            <executions>
-                <execution>
-                    <configuration>
-                        <executable>python</executable>
-                        <workingDirectory>/src/PyScripts/</workingDirectory>
-                        <arguments>
-                            <argument>HelloWorld.py</argument>
-                        </arguments>
-                    </configuration>
-                    <id>python_build</id>
-                    <phase>generate-resources</phase>
-                    <goals>
-                        <goal>exec</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
-</build>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ma... http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>com.easy</groupId>
+   <artifactId>mavenparameterize</artifactId>
+   <version>0.0.1-SNAPSHOT</version>
+   <name>My Maven Project</name>
+   <description>This is a simple Maven Project</description>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>nexus@123</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<execution>
+						<configuration>
+							<executable>python</executable>
+							<workingDirectory>/src/PyScripts/</workingDirectory>
+							<arguments>
+								<argument>HelloWorld.py</argument>
+							</arguments>
+						</configuration>
+						<id>python_build</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
