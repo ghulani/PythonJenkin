@@ -47,7 +47,8 @@ pipeline {
 				rtMavenDeployer(
 					id: "deployer",
 					serverId: "nexus@123",
-					releaseRepo: "pypi_host_nagp"
+					releaseRepo: "pypi_host_nagp",
+					snapshotRepo: "pypi_host_nagp"
 				)
 				rtMavenRun(
 					pom: 'pom.xml',
