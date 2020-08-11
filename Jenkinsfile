@@ -36,6 +36,15 @@ pipeline {
 		
 	}
 	stage('Upload to Artifactory'){
+	
+		environment {
+			NEXUS_VERSION = "nexus3"
+			NEXUS_PROTOCOL = "http"
+			NEXUS_URL = "http://127.0.0.1:8081"
+			NEXUS_REPOSITORY = "pypi_host_nagp"
+			NEXUS_CREDENTIAL_ID = "nexus-cred"
+		}
+	
 		steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
