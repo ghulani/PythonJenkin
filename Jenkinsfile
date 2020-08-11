@@ -44,17 +44,20 @@ pipeline {
 			NEXUS_CREDENTIAL_ID = "nexus-cred"
 		}
 		steps{
-				rtMavenDeployer{
+				rtMavenDeployer(
 					id: "deployer",
 					serverId: "nexus@123",
 					reeaseRepo: "pypi_host_nagp"
-				}
-				rtMavenRun{
+				)
+				rtMavenRun(
 					pom: 'pom.xml',
 					goals: 'clean install'
 					deployerId: 'deployer',
 					
-				}
+				)
+				rtPublishBuildInfo(
+					serverId: "nexus@123"
+				)
 		
 		}
 
