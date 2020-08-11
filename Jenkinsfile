@@ -25,7 +25,7 @@ pipeline {
 			}
 		steps{
 			withSonarQubeEnv('SonarQube') {
-			bat 'cd  /D %scannerHome% bin\ && call sonar-scanner.bat'
+			bat 'cd  /D %scannerHome%  && call bin/sonar-scanner.bat'
 			}
 		}
 		
