@@ -25,14 +25,25 @@ pipeline {
 			}
 		steps{
 			withSonarQubeEnv('SonarQube') {
-			bat 'cd  /D %scannerHome% && call sonar-scanner.bat'
-			
-			//cmd_exec ('cd %scannerHome%')
-			//cmd_exec ('sonar-scanner.bat')
+			bat 'cd  /D %scannerHome% \bin\ && call sonar-scanner.bat'
 			}
 		}
 		
 	}
+	//stage('Upload to Artifactory'){	
+	//	environment {
+	//		NEXUS_VERSION = "nexus3"
+	//		NEXUS_PROTOCOL = "http"
+	//		NEXUS_URL = "http://127.0.0.1:8081"
+	//		NEXUS_REPOSITORY = "pypi_host_nagp"
+	//		NEXUS_CREDENTIAL_ID = "nexus-cred"
+	//	}
+	//	steps{
+		
+	//	}
+
+	//}
+	
 
   
 	//post {
@@ -42,6 +53,3 @@ pipeline {
 	// }
 	}
 }
-def cmd_exec(command) {
-		return bat(returnStdout: true, script: "${command}").trim()
-	}
