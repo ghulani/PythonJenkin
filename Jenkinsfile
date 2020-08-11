@@ -1,5 +1,10 @@
 pipeline {
   agent any
+  tool{
+	
+		maven "Maven3"
+  }
+  
   stages {
 	stage('SCM Checkout'){
 		steps{
@@ -30,19 +35,30 @@ pipeline {
 		}
 		
 	}
-	//stage('Upload to Artifactory'){	
-	//	environment {
-	//		NEXUS_VERSION = "nexus3"
-	//		NEXUS_PROTOCOL = "http"
-	//		NEXUS_URL = "http://127.0.0.1:8081"
-	//		NEXUS_REPOSITORY = "pypi_host_nagp"
-	//		NEXUS_CREDENTIAL_ID = "nexus-cred"
-	//	}
-	//	steps{
+	stage('Upload to Artifactory'){	
+		environment {
+			NEXUS_VERSION = "nexus3"
+			NEXUS_PROTOCOL = "http"
+			NEXUS_URL = "http://127.0.0.1:8081"
+			NEXUS_REPOSITORY = "pypi_host_nagp"
+			NEXUS_CREDENTIAL_ID = "nexus-cred"
+		}
+		steps{
+				rtMavenDeployer{
+					id: "deployer",
+					serverId: "nexus@123",
+					reeaseRepo: "pypi_host_nagp"
+				}
+				rtMavenRun{
+					pom: 'pom.xml',
+					goals: 'clean install'
+					deployerId: 'deployer',
+					
+				}
 		
-	//	}
+		}
 
-	//}
+	}
 	
 
   
