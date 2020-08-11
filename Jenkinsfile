@@ -55,25 +55,16 @@ pipeline {
                     artifactExists = fileExists artifactPath;
                     if(artifactExists) {
                         echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
-                        nexusArtifactUploader(
-                            nexusVersion: "nexus3",
-                            protocol: "http",
-                            nexusUrl: "http://127.0.0.1:8081",
-                            groupId: pom.groupId,
-                            version: pom.version,
-                            repository: "pypi_host_nagp",
-                            credentialsId: "nexus-cred",
-                            artifacts: [
-                                [artifactId: pom.artifactId,
-                                classifier: '',
-                                file: artifactPath,
-                                type: pom.packaging],
-                                [artifactId: pom.artifactId,
-                                classifier: '',
-                                file: "pom.xml",
-                                type: "pom"]
-                            ]
-                        );
+						nexusArtifactUploader(
+						artifacts: [[artifactId: 'nexus@123', classifier: '', file: 'target/pipline_nagp-0.0.1-SNAPSHOT.war', type: 'war']],
+						credentialsId: 'e9e0853f-14c6-4e1a-875a-1421c54749fb',
+						groupId: 'com.easy', nexusUrl: 'http://127.0.0.1:8081',
+						nexusVersion: 'nexus3', 
+						protocol: 'http', 
+						repository: 'http://127.0.0.1:8081/repository/pypi_host_nagp/', 
+						version: '0.0.1-SNAPSHOT'
+						);
+                        
                     } else {
                         error "*** File: ${artifactPath}, could not be found";
                     }
