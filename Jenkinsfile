@@ -35,7 +35,7 @@ pipeline {
 		}
 		
 	}
-	stage{
+	stage('Upload to Artifactory'){
 		steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
