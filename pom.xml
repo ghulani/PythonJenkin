@@ -11,7 +11,7 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
+				
 				<artifactId>nexus@123</artifactId>
 				<version>1.6.0</version>
 				<executions>
