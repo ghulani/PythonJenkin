@@ -35,7 +35,8 @@ pipeline {
 		}
 		
 	}
-	steps {
+	stage{
+		steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
                     filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
@@ -69,7 +70,7 @@ pipeline {
                 }
             }
 	
-
+	}
   
 	//post {
 	//      always {
