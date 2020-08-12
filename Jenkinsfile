@@ -9,7 +9,6 @@ pipeline {
 		skipDefaultCheckout()
   
   }
-  def app 
   
   stages {
 	stage('SCM Checkout'){
