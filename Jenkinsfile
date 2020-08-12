@@ -43,7 +43,7 @@ pipeline {
 				buildName: "pipeline_nagp",
 				buildNumber: "1.0.0",
 				serverId: "artifactory",
-				spec: '''{"files":[{"pattern":"/src","target":"result/","recursive": "false"}]}'''
+				spec: '''{"files":[{"pattern":"/src/","target":"result/src","recursive": "false"}]}'''
 			)
 		}
 	}	
