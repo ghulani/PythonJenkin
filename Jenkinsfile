@@ -1,10 +1,12 @@
 pipeline {
   agent any
-  tools{
-	
-		maven "Maven3"
-  }
+  //tools{
+	//	maven "Maven3"
+  //}
+  {
+	skipDefaultCheckout()
   
+  }
   stages {
 	stage('SCM Checkout'){
 		steps{
@@ -24,7 +26,6 @@ pipeline {
 			bat 'pytest --junitxml test-results.xml "src/tests/test1.py"'
 		}
 	}
-	
 	stage('SonarQube') {
 		environment {
 				scannerHome = tool 'SonarScanner'
@@ -33,11 +34,8 @@ pipeline {
 			withSonarQubeEnv('SonarQube') {
 			bat 'cd  /D %scannerHome%  && call bin/sonar-scanner.bat'
 			}
-		}
-		
+		}	
 	}
-	
-	
 	stage('Upload to Artifactory'){
 	
 		steps{
@@ -73,13 +71,8 @@ pipeline {
 				failFast:true,
 				copy:true
 			)
-		
-		
 		}
-	
 	}
-	
-	
   
 	//post {
 	//      always {
