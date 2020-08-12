@@ -45,15 +45,7 @@ pipeline {
 				buildName: "pipeline_nagp",
 				buildNumber: "1.0.0",
 				serverId: "artifactory",
-				spec: {
-					"files":[
-						{
-						"pattern":'requirements.txt',
-						"target":"result/",
-						"recursion": "false"
-						}
-					]
-				}
+				spec: {"files":[{"pattern":'requirements.txt',"target":"result/","recursion": "false"}]}
 			)
 		}
 	}	
