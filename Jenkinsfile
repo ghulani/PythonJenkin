@@ -43,9 +43,7 @@ pipeline {
 				buildName: "pipeline_nagp",
 				buildNumber: "1.0.0",
 				serverId: "artifactory",
-				spec: '''{"files":[{"pattern":"/src/","target":"result/src","recursive": "false"},
-					{"pattern":"requirements.txt/","target":"result/","recursive": "false"},
-					{"pattern":"Jenkinsfile/","target":"result/","recursive": "false"}]}'''
+				spec: '''{"files":[{"pattern":"/src/","target":"result/src","recursive": "false"}]}'''
 			)
 		}
 	}	
