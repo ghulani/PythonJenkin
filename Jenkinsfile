@@ -69,15 +69,19 @@ pipeline {
 			}
 		steps{
 			bat ' cd /D %dockerHome% && call docker build -t ghulani/pythondemo --no-cache -f Dockerfile .'
-			dockerbuild = docker.build("ghulani/pythondemo")
+			script{
+				dockerbuild = docker.build("ghulani/pythondemo")
+			}
 		}
-	
 	}
 	stage("Push to Docker Hub"){
 	
 		steps{
-			docker.withRegistry( 'https://hub.docker.com/', 'docker-hub' ) {
+			script{
+			
+				docker.withRegistry( 'https://hub.docker.com/', 'docker-hub' ) {
 				dockerbuild.push()
+				}
 			}
 			bat 'docker push ghulani/pythondemo '
 		}
