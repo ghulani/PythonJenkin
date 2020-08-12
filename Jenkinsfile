@@ -3,8 +3,8 @@ pipeline {
   //tools{
 	//	maven "Maven3"
   //}
-  {
-	skipDefaultCheckout()
+  options {
+		skipDefaultCheckout()
   
   }
   stages {
