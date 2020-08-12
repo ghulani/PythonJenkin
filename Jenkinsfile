@@ -61,9 +61,12 @@ pipeline {
 	}
   
 	stage("Create Docker Image"){
+		environment {
+				dockerHome = tool 'docker'
+			}
 		steps{
-			bat 'docker build -t ghulani/pythondemo --no-cache -f Dockerfile .'
-		
+			
+			bat ' cd /D %dockerHome% && call docker build -t ghulani/pythondemo --no-cache -f Dockerfile .'
 		}
 	
 	}
