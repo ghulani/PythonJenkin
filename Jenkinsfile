@@ -56,7 +56,23 @@ pipeline {
 			)
 		}
 	}
-
+	stage("Add interactive promotion"){
+		steps{
+			rtAddInteractivePromotion(
+				serverId: "artifactory",
+				targetRepo:"result/",
+				displayName:'Promote me',
+				buildName: "pipeline_nagp",
+				buildNumber: "1.0.0",
+				comment:"This is promotion comment",
+				sourceRepo:"result/",
+				status:"Released",
+				includeDependencies: true,
+				failFast:true,
+				copy:true
+			)
+		}
+	}
   
 	//post {
 	//      always {
