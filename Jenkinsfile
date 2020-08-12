@@ -3,10 +3,14 @@ pipeline {
   //tools{
 	//	maven "Maven3"
   //}
+  
+  
   options {
 		skipDefaultCheckout()
   
   }
+  def app 
+  
   stages {
 	stage('SCM Checkout'){
 		steps{
@@ -56,6 +60,39 @@ pipeline {
 			)
 		}
 	}
+  
+	stage("Create Docker Image"){
+		steps{
+			bat 'docker build -t ghulani/pythondemo --no-cache -f Dockerfile .'
+		
+		}
+	
+	}
+	stage("Push to Docker Hub"){
+		steps{
+			bat 'docker push ghulani/pythondemo '
+		}
+	
+	}
+	stage("Stoping running container"){
+		steps{
+			bat 'netstat -ano | findStr "800"'
+			//sh '''
+			//ContainerID = $(docker ps | grep 800 | cut -d " " -f 1)
+			//if [$ContainerID]
+			//then
+			//	docker stop $ContainerID
+			//	docker rm -f $ContainerID
+			//fi
+			//'''
+		}
+	}
+	stage("Docker Deployment"){
+		steps{
+			bat 'docker run --name pythondemo -d -p 800:8080 ghulani/pythondemo'
+		}
+	}
+  
   
 	//post {
 	//      always {
