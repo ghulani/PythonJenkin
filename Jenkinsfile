@@ -44,7 +44,7 @@ pipeline {
 			rtUpload(
 				buildName: "pipeline_nagp",
 				buildNumber: "1.0.0",
-				serverId: "artifactory"
+				serverId: "artifactory",
 				spec: '''{
 					"files":[
 						{
