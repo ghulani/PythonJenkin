@@ -44,7 +44,7 @@ pipeline {
 		steps{
 				rtMavenDeployer(
 					id: "deployer",
-					serverId: "nexus@123",
+					serverId: "artifactory",
 					releaseRepo: "pypi_host_nagp",
 					snapshotRepo: "pypi_host_nagp"
 				)
@@ -55,7 +55,7 @@ pipeline {
 					
 				)
 				rtPublishBuildInfo(
-					serverId: "nexus@123"
+					serverId: "artifactory"
 				)
 		
 		}
