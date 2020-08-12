@@ -38,7 +38,6 @@ pipeline {
 	}
 	
 	
-	
 	stage('Upload to Artifactory'){
 	
 		steps{
@@ -46,7 +45,7 @@ pipeline {
 				buildName: "pipeline_nagp",
 				buildNumber: "1.0.0",
 				serverId: "artifactory"
-				spec: {
+				spec: '''{
 					"files":[
 						{
 						"pattern":'requirements.txt',
@@ -54,7 +53,7 @@ pipeline {
 						"recursion": "false"
 						}
 					]
-				}
+				}'''
 			)
 		}
 	}	
