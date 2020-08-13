@@ -66,20 +66,20 @@ pipeline {
   
 	stage("Create Docker Image"){
 		environment {
-				dockerHome = tool 'docker'
+				dockerHome = tool 'docker-hub'
 			}
 		steps{
-			bat ' cd /D %dockerHome% && call docker build -t ghulani/pythondemo --no-cache -f Dockerfile .'
-			//script{
-			//	dockerbuild = docker.build("ghulani/pythondemo")
-			//}
+			//bat ' cd /D %dockerHome% && call docker build -t ghulani/pythondemo --no-cache -f Dockerfile .'
+			script{
+				dockerbuild = docker.build("ghulani/pythondemo")
+			}
 		}
 	}
 	stage("Push to Docker Hub"){
 			
 		steps{
 			
-			withCredentials([[$class: 'UsernamePasswordMultiBinding',credentialsId: 'docker-hub', passwordVariable: 'pass']]) {
+			//withCredentials([[$class: 'UsernamePasswordMultiBinding',credentialsId: 'docker-hub', passwordVariable: 'pass']]) {
 			//withCredentials([usernamePassword(credentialsId: 'DP', passwordVariable: 'pass')]) {
 				// the code in here can access $pass and $user
 				//bat 'DockerHubP | docker login --username ghulani --password-stdin'
@@ -87,16 +87,16 @@ pipeline {
 					echo '%pass%'
 					echo '$pass'
 				
-				bat 'docker login -u=ghulani -p=%pass%'
-				bat 'docker push ghulani/pythondemo'
-			}
-	
-			//script{
-			
-			//	docker.withRegistry( 'https://hub.docker.com/', 'docker-hub' ) {
-			//	dockerbuild.push()
-			//	}
+			//	bat 'docker login -u=ghulani -p=%pass%'
+			//	bat 'docker push ghulani/pythondemo'
 			//}
+	
+			script{
+			
+				docker.withRegistry( 'https://hub.docker.com/', 'docker-hub' ) {
+				dockerbuild.push()
+				}
+			}
 			//bat 'DockerHubP | docker login --username ghulani --password-stdin'
 			//bat 'docker push ghulani/pythondemo '
 		}
