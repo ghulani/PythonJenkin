@@ -10,7 +10,7 @@ pipeline {
   
   }
   environment {
-
+		def app = ''
 				dockerbuild = ''
 			}
   
@@ -71,8 +71,13 @@ pipeline {
 		steps{
 			//bat ' cd /D %dockerHome% && call docker build -t ghulani/pythondemo --no-cache -f Dockerfile .'
 			script{
-				dockerbuild = docker.build("ghulani/pythondemo")
-			}
+				docker.withRegistry('https://registry.example.com', 'docker-hub') {
+
+        				app = docker.build(""ghulani/pythondemo"")
+
+    					}
+					//def dockerbuild = docker.build("ghulani/pythondemo")
+				}
 		}
 	}
 	stage("Push to Docker Hub"){
@@ -93,8 +98,8 @@ pipeline {
 	
 			script{
 			
-				docker.withRegistry( 'https://hub.docker.com/', 'docker-hub' ) {
-				dockerbuild.push()
+				//docker.withRegistry( 'https://hub.docker.com/', 'docker-hub' ) {
+				app.push()
 				}
 			}
 			//bat 'DockerHubP | docker login --username ghulani --password-stdin'
