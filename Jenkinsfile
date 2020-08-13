@@ -77,11 +77,15 @@ pipeline {
 	stage("Push to Docker Hub"){
 			
 		steps{
-			withCredentials([usernamePassword(credentialsId: 'DP', passwordVariable: 'pass')]) {
+			
+			withCredentials([[$class: 'UsernamePasswordMultiBinding',credentialsId: 'docker-hub', passwordVariable: 'pass')]) {
+			//withCredentials([usernamePassword(credentialsId: 'DP', passwordVariable: 'pass')]) {
 				// the code in here can access $pass and $user
 				//bat 'DockerHubP | docker login --username ghulani --password-stdin'
-				echo '%pass%'
-				echo '$pass'
+				bat '''
+					echo '%pass%'
+					echo '$pass'
+					'''
 				bat 'docker login -u=ghulani -p=%pass%'
 				bat 'docker push ghulani/pythondemo'
 			}
