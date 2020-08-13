@@ -71,7 +71,7 @@ pipeline {
 		steps{
 			//bat ' cd /D %dockerHome% && call docker build -t ghulani/pythondemo --no-cache -f Dockerfile .'
 			script{
-				docker.withRegistry('https://registry.example.com', 'docker-hub') {
+				docker.withRegistry('https://hub.docker.com/', 'docker-hub') {
 
         				app = docker.build("ghulani/pythondemo")
 
@@ -89,8 +89,8 @@ pipeline {
 				// the code in here can access $pass and $user
 				//bat 'DockerHubP | docker login --username ghulani --password-stdin'
 				
-					echo '%pass%'
-					echo '$pass'
+				//	echo '%pass%'
+				//	echo '$pass'
 				
 			//	bat 'docker login -u=ghulani -p=%pass%'
 			//	bat 'docker push ghulani/pythondemo'
@@ -101,7 +101,7 @@ pipeline {
 				//docker.withRegistry( 'https://hub.docker.com/', 'docker-hub' ) {
 				app.push()
 				}
-			}
+			//}
 			//bat 'DockerHubP | docker login --username ghulani --password-stdin'
 			//bat 'docker push ghulani/pythondemo '
 		}
