@@ -80,7 +80,7 @@ pipeline {
 			withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass')]) {
 				// the code in here can access $pass and $user
 				//bat 'DockerHubP | docker login --username ghulani --password-stdin'
-				bat 'docker login -u=$user -p=$pass'
+				bat 'docker login -u=ghulani -p=%pass%'
 				bat 'docker push ghulani/pythondemo'
 			}
 	
