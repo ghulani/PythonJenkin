@@ -73,7 +73,7 @@ pipeline {
 			script{
 				docker.withRegistry('https://registry.example.com', 'docker-hub') {
 
-        				app = docker.build(""ghulani/pythondemo"")
+        				app = docker.build("ghulani/pythondemo")
 
     					}
 					//def dockerbuild = docker.build("ghulani/pythondemo")
