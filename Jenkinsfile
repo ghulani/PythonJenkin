@@ -10,11 +10,7 @@ pipeline {
   
   }
   environment {
-	  withCredentials([[$class: 'UsernamePasswordMultiBinding',credentialsId: 'docker-hub', passwordVariable: 'pass']]) {
-	  echo '%pass%'
-	  
-	  }
-	  
+
 				dockerbuild = ''
 			}
   
